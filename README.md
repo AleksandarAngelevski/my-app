@@ -1,3 +1,6 @@
+First ever react project (the code may be shit but it works, hope will improve as i learn react)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
