@@ -1,24 +1,26 @@
 import {useState} from "react";
+
 function ListElement({value}){
-    return(<li style={listElementStyle}className="task">{value}</li>)
+
+    return(<div className="container" style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}><li style={listElementStyle}className="task">{value}</li><button>del</button></div>)
 }
 let userInput = "";
 export default function List(){
     function handleChange(e){
-        userInput= e.target.value;
-        console.log(userInput)
+        changeValue(e.target.value);
+        userInput=e.target.value;
     }
-    const [value,changeValue]=useState(userInput);
+
+    const [value1,changeValue]=useState("");
     const [todo,changeTodo]=useState([]);
     function submitBtn(){
-        console.log(userInput);
-        const update = [...todo,userInput];
         changeTodo([...todo,userInput]);
-        console.log(update);
+        changeValue("");
+
     }
     return(
         <>
-        <div style={{margin:"0",height:"80px",display:"flex",justifyContent: "center",alignItems: "center"}}><input onChange={handleChange} style={inputFieldStyle} type={"text"}/><button onClick={submitBtn}  style={buttonStyle}>Add</button></div>
+        <div style={{margin:"0",height:"80px",display:"flex",justifyContent: "center",alignItems: "center"}}><input value={value1} onChange={handleChange} style={inputFieldStyle} type={"text"}/><button onClick={submitBtn}  style={buttonStyle}>Add</button></div>
         <ul style={listStyle}>
             {todo.map((element)=>
                 <ListElement value={element}/>
@@ -56,7 +58,7 @@ const buttonStyle={
 const listStyle ={
     display:"flex",
     flexDirection:"column",
-    backgroundColor:"red",
+    border:"2px black solid",   
     justifyContent:"center",
     alignItems:"center",
     listStyle:"none",
@@ -69,7 +71,8 @@ const listStyle ={
 const listElementStyle ={
     marginTop:"1rem",
     marginBottom:"1rem",
-    width:"100%",
+    maxWidth:"400px",
     float:"left",
-    overflowWrap:"break-word"
+    overflowWrap:"break-word",
+
 }
